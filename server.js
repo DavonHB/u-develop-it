@@ -11,20 +11,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use('/api', apiRoutes);
 
-//get a single candidate 
-db.query(`SELECT * FROM candidates WHERE id = 1`, (err, row) => {
-    if (err) {
-      console.log(err);
-    }
-    console.log(row);
-  });
-  
-// Default response for any other request (Not Found)
+//default response for any other request (Not Found)
 app.use((req, res) => {
   res.status(404).end();
 });
 
-// Start server after DB connection
+//start server after DB connection
 db.connect(err => {
   if (err) throw err;
   console.log('Database connected.');
